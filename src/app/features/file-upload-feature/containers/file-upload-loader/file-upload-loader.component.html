@@ -1,0 +1,18 @@
+
+@defer (on timer(3000ms)) {
+  <app-file-upload-form
+    [completed]="completed$ | async"
+    [progress]="progress$ | async"
+    [error]="error$ | async"
+    [isInProgress]="isInProgress$ | async"
+    [isReady]="isReady$ | async"
+    [hasFailed]="hasFailed$ | async"
+    (uploadCancel)="cancelUpload()"
+    (uploadRequest)="uploadFile($event)"
+    (uploadReset)="resetUpload()"
+  ></app-file-upload-form>
+}  @placeholder  {
+  <div class="spinner-container">
+    <mat-spinner class="spinnr"></mat-spinner>
+  </div>
+}

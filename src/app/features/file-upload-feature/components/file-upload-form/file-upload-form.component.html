@@ -1,0 +1,39 @@
+
+<div class="file-container">
+  <div class="file-upload-form">
+    <div class="button-upload">
+      <button
+        class="custom-button"
+        (click)="fileInput.click()"
+        mat-flat-button
+        [disabled]="!isReady && !hasFailed && !completed"
+        [color]="!isReady && !hasFailed && !completed ? 'warn' : completed ? 'accent' : 'primary'">
+        <span *ngIf="isReady || hasFailed">Subir Archivos</span>
+        <span *ngIf="completed">Volver a subir</span>
+        <ng-container *ngIf="!isReady && !hasFailed && !completed">
+          <mat-spinner diameter="20" ></mat-spinner>
+        </ng-container>
+      </button>
+      <input #fileInput class="input-file" type="file" multiple (change)="uploadFile($event)" />
+      <ng-container *ngIf="!isReady && !hasFailed && !completed">
+        <button
+          color="accent"
+          mat-flat-button
+          (click)="cancelUpload()">Cancel Upload</button>
+      </ng-container>
+    </div>
+
+    <div class="progress-bar-container">
+      <mat-progress-bar
+        [color]="'accent'"
+        [mode]="'determinate'"
+        [value]="progress">
+      </mat-progress-bar>
+    </div>
+
+
+    <div class="message error" *ngIf="hasFailed">
+      Error: {{ error  }}
+    </div>
+  </div>
+</div>

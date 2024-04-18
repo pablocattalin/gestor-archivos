@@ -1,0 +1,31 @@
+.input-file {
+  display: none;
+}
+
+.file-container {
+  height: 10rem;
+  align-content: center;
+}
+
+.file-upload-form {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 0 auto;
+  align-items: start;
+}
+
+.button-upload {
+  dispLay: grid;
+  max-width: 30rem;
+  margin: auto 2rem;
+  padding: auto 3rem;
+}
+
+.custom-button {
+  font-size: 1.5rem;
+}
+
+.progress-bar-container {
+  dispLay: grid;
+  margin: auto 0.5rem;
+}

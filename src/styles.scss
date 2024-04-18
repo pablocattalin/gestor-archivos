@@ -1,0 +1,45 @@
+
+
+
+// html {
+//   box-sizing: border-box;
+//   font-size: 65%;
+//   margin: 0 auto;
+// }
+
+*, *:before, *::after {
+  box-sizing: inherit;
+}
+
+
+html, body {
+  height: 100%;
+  font-size: 65%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Raleway", sans-serif;
+  font-size: 1.6rem;
+}
+
+.header-container {
+  display: grid;
+  margin: 0 auto;
+  grid-template-columns: repeat(3, 1fr);
+  // background-color: #e25121;
+}
+
+
+.header-title {
+  grid-column: 2;
+  display: block;
+  padding: 5rem;
+}
+
+.main-container {
+  max-width: 120rem;
+  margin: 0 auto;
+  // background-color: #e25121;
+  background-color: #eeeeee;
+}
