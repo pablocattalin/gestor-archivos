@@ -24,6 +24,7 @@ export class FileUploadFormComponent implements OnInit, OnChanges {
   @Input() isInProgress: boolean | null = false;
   @Input() isReady!: boolean | null;
   @Input() hasFailed!: boolean | null;
+  @Input() result!: any | null;
 
   @Output() uploadRequest = new EventEmitter<File>();
   @Output() uploadReset = new EventEmitter();

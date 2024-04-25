@@ -25,19 +25,18 @@ export class FileUploadLoaderComponent implements OnInit {
   isInProgress$!: Observable<boolean>;
   isReady$!: Observable<boolean>;
   hasFailed$!: Observable<boolean>;
+  result$!: Observable<any | null>;
 
   constructor(private store$: Store<State>) {}
 
-  ngOnInit() {
-    this.store$.pipe(select(feature.selectStatus)).subscribe(a => console.log('estado actual', a));
+  ngOnInit() {    
     this.completed$ = this.store$.pipe(select(feature.selectUploadFileCompleted));
     this.progress$ = this.store$.pipe(select(feature.selectProgress));
     this.error$ = this.store$.pipe(select(feature.selectError));
     this.isInProgress$ = this.store$.pipe(select(feature.selectUploadFileInProgress));
     this.isReady$ = this.store$.pipe(select(feature.selectUploadFileReady));
     this.hasFailed$ = this.store$.pipe(select(feature.selectUploadFileFailed));
-
-    this.store$.pipe(select(feature.selectUploadFileInProgress)).subscribe(a => console.log(a));
+    this.result$ = this.store$.pipe(select(feature.selectResult));    
   }
 
   uploadFile(file: File): void {

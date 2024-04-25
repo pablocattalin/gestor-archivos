@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { HttpClient, HttpEvent, HttpEventType, HttpRequest, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpEventType, HttpHeaders, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
@@ -14,19 +14,19 @@ export class FileUploadService {
   constructor(private httpClient: HttpClient,
     private router: Router) {}
 
-  public uploadFile(file: File): Observable<HttpEvent<{}>> {
+  public uploadFile(file: File): Observable<HttpEvent<{}>> {    
     const formData = new FormData();
-    formData.append('files', file, file.name);
-
-    const options = {
-      reportProgress: true
-    };
+    formData.append('file', file, file.name);
+    console.log(file);    
 
     const req = new HttpRequest(
       'POST',
-      `${this.API_BASE_URL}/api/file`,
+      `${this.API_BASE_URL}`,
       formData,
-      options
+      {
+        reportProgress: true,
+        responseType: 'json' 
+      }
     );
     return this.httpClient.request(req);
   }

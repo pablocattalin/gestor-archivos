@@ -6,12 +6,14 @@ export interface State {
   status: UploadStatus;
   error: string | null;
   progress: number | null;
+  result: any | null;
 }
 
 export const initialState: State = {
   status: UploadStatus.Ready,
   error: null,
-  progress: 0
+  progress: 0,
+  result: null
 };
 
 
@@ -23,43 +25,50 @@ export const feature = createFeature({
       ...state,
       status: UploadStatus.Requested,
       progress: null,
-      error: null
+      error: null,
+      result: null
     })),
     on(uploadCancelAction, (state) => ({
       ...state,
       status: UploadStatus.Ready,
       progress: null,
-      error: null
+      error: null,
+      result: null
     })),
     on(uploadResetAction, (state) => ({
       ...state,
       status: UploadStatus.Ready,
       progress: null,
-      error: null
+      error: null,
+      result: null
     })),
     on(uploadFailureAction, (state, {error}) => ({
         ...state,
         status: UploadStatus.Failed,
         error: error,
-        progress: null
+        progress: null,
+        result: null
     })),
     on(uploadStartedAction, (state) => ({
       ...state,
       status: UploadStatus.Started,
-      progress: 0
+      progress: 0,
+      result: null
     })),
     on(uploadProgressAction, (state, {progress}) => ({
       ...state,
-      progress: progress
+      progress: progress,
+      result: null
     })),
-    on(uploadCompletedAction, (state) => ({
+    on(uploadCompletedAction, (state, {info}) => ({
       ...state,
       status: UploadStatus.Completed,
       progress: 100,
-      error: null
+      error: null,
+      result: info
     })),
   ),
-  extraSelectors: ({selectStatus, selectProgress}) => ({
+  extraSelectors: ({selectStatus, selectProgress, selectResult}) => ({
     selectUploadFileReady: createSelector(
       selectStatus,
       (status) => {
@@ -90,6 +99,7 @@ export const feature = createFeature({
       (status) => status === UploadStatus.Completed
     ),
     selectStatus,
-    selectProgress
+    selectProgress,
+    selectResult
   }),
 })

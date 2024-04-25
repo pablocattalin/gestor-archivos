@@ -39,4 +39,5 @@ export const uploadFailureAction = createAction(
 
 export const uploadCompletedAction = createAction(
   ActionTypes.UPLOAD_COMPLETED,  
+  props<{ info?: any }>()
 );

@@ -33,7 +33,10 @@
 
 
     <div class="message error" *ngIf="hasFailed">
-      Error: {{ error  }}
+      Error: {{ error | json }}
     </div>
+  </div>
+  <div>
+    Resultado: {{ result | json }}
   </div>
 </div>
